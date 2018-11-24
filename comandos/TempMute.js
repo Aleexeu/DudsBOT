@@ -6,11 +6,11 @@ var razao = args.slice(2).join(" ")
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if(!tomute) return message.reply("Não foi possível encontrar o usuário.");
   if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("Infelizmente você não tem permissão!");
-  let muterole = message.guild.roles.find(`name`, "Muted");
+  let muterole = message.guild.roles.find(`name`, "Silenciado");
   if(!muterole){
     try{
       muterole = await message.guild.createRole({
-        name: "Muted",
+        name: "Silenciado",
         color: "#000000",
         permissions:[]
       })
@@ -27,7 +27,7 @@ var razao = args.slice(2).join(" ")
 
   let mutetime = args[1];
   if(!mutetime) return message.reply("Você não especificou um tempo!");
-  var canal = message.guild.channels.find("name", "😞cantinho-da-vergonha");
+  var canal = message.guild.channels.find("name", "punições");
   if (!canal) return; canal.send({
 embed: { 
 description:`:mute: Membro Silenciado.\nUsuário mutado com sucesso!\n \n \n:beginner: Autor:\n<@${message.author.id}>\n \n:bust_in_silhouette:  Usuário:\n<@${tomute.id}>\n \n:clock3: Duração:\n${ms(ms(mutetime))}\n \n:pencil: Motivo:\n ${razao}`, 
